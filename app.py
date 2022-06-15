@@ -1,5 +1,6 @@
 import json, os, urllib3, threading, time
 from flask import Flask, jsonify, request, render_template
+# from tasks import uwsgi_task
 from cmd import *
 
 app = Flask(__name__)
@@ -50,9 +51,9 @@ def create_store():
       }
     return jsonify(RETURN_DATA)  
 
-  t = threading.Thread(target = backend_processing(INITIAL_VEHICLE_STATE, BASE_URL, VEHICLE_ID, INPUT_CMD, PARAMETER_1, PARAMETER_2, TOKEN), daemon=True)
+  t = threading.Thread(target = backend_processing, args=(INITIAL_VEHICLE_STATE, BASE_URL, VEHICLE_ID, INPUT_CMD, PARAMETER_1, PARAMETER_2, TOKEN))
+  t.daemon = True 
   t.start()
-  print("after threading")
   return jsonify(RETURN_DATA)
 
 def backend_processing(INITIAL_VEHICLE_STATE, BASE_URL, VEHICLE_ID, INPUT_CMD, PARAMETER_1, PARAMETER_2, TOKEN):
