@@ -102,9 +102,12 @@ def GetVehicleData(BASE_URL, VEHICLE_ID, TOKEN):
 
 # Function that retrieves the vehicle's status and returns it 
 def GetVehicleState(BASE_URL, VEHICLE_ID, TOKEN):
-  VEHICLE_DATA = GetVehicleData(BASE_URL, VEHICLE_ID, TOKEN)
-  VEHICLE_STATE = VEHICLE_DATA["response"]["state"]
-  return(VEHICLE_STATE)
+  try:
+    VEHICLE_DATA = GetVehicleData(BASE_URL, VEHICLE_ID, TOKEN)
+    VEHICLE_STATE = VEHICLE_DATA["response"]["state"]
+    return(VEHICLE_STATE)
+  except:
+    return("TOKEN")
 
 # Function that retrieves the vehicle's drive data and returns it 
 def GetVehicleDriveData(BASE_URL, VEHICLE_ID):

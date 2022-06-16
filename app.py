@@ -1,7 +1,7 @@
 import json, os, urllib3, threading, time
 from flask import Flask, jsonify, request, render_template
 # from tasks import uwsgi_task
-from cmd import *
+import cmd
 
 app = Flask(__name__)
 app.config['JSON_SORT_KEYS'] = False
@@ -9,6 +9,7 @@ app.config['JSON_SORT_KEYS'] = False
 BASE_URL = "https://owner-api.teslamotors.com/api/1/vehicles/"
 
 global TOKEN, VEHICLE_ID, INPUT_CMD, PARAMETER_1, PARAMETER_2, INITIAL_VEHICLE_STATE
+
 
 #post /store data: {name :}
 @app.route('/tesla' , methods=['POST'])
@@ -21,7 +22,7 @@ def create_store():
   PARAMETER_1 = request_data['PARAMETER_1']
   PARAMETER_2 = request_data['PARAMETER_2']
 
-  INITIAL_VEHICLE_STATE = GetVehicleState(BASE_URL, VEHICLE_ID, TOKEN)
+  INITIAL_VEHICLE_STATE = cmd.GetVehicleState(BASE_URL, VEHICLE_ID, TOKEN)
 
   if INPUT_CMD == "test_command":
     INITIAL_VEHICLE_STATE = "testing"
@@ -60,15 +61,15 @@ def backend_processing(INITIAL_VEHICLE_STATE, BASE_URL, VEHICLE_ID, INPUT_CMD, P
     # Capture the INITIAL_VEHICLE_STATE to verify that the vehicle is awake
     if INITIAL_VEHICLE_STATE == "online" or INITIAL_VEHICLE_STATE == "testing":
       print("Sending the " + INPUT_CMD)
-      RunCommand(BASE_URL, VEHICLE_ID, INPUT_CMD, PARAMETER_1, PARAMETER_2, TOKEN)
+      cmd.RunCommand(BASE_URL, VEHICLE_ID, INPUT_CMD, PARAMETER_1, PARAMETER_2, TOKEN)
     else:
       print("Vehicle ID # " + VEHICLE_ID + " is currently " + INITIAL_VEHICLE_STATE)
 
       print("Sending the wake_up command to vehicle ID #" + VEHICLE_ID)
-      WakeVehicle(BASE_URL, VEHICLE_ID, TOKEN)
+      cmd.WakeVehicle(BASE_URL, VEHICLE_ID, TOKEN)
 
       print("Sending the " + INPUT_CMD + " command to vehicle ID #" + VEHICLE_ID)
-      RunCommand(BASE_URL, VEHICLE_ID, INPUT_CMD, PARAMETER_1, PARAMETER_2, TOKEN)
+      cmd.RunCommand(BASE_URL, VEHICLE_ID, INPUT_CMD, PARAMETER_1, PARAMETER_2, TOKEN)
 
 
 app.run(host="0.0.0.0", port=5000, threaded=True)
