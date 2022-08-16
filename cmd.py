@@ -86,7 +86,7 @@ def GetVehicleData(BASE_URL, VEHICLE_ID, TOKEN):
   # Variables
   HEADERS = {
     'Authorization': "Bearer " + TOKEN,
-    'Content-Type': 'application/json',
+    'Accept': 'application/json',
     'User-Agent': 'None'
   }
   URL = BASE_URL + VEHICLE_ID
@@ -114,7 +114,7 @@ def GetVehicleDriveData(BASE_URL, VEHICLE_ID):
   # Variables
   HEADERS = {
     'Authorization': "Bearer " + TOKEN,
-    'Content-Type': 'application/json',
+    'Accept': 'application/json',
     'User-Agent': 'None'
   }
   URL = BASE_URL + VEHICLE_ID + '/data_request/drive_state'
@@ -162,7 +162,7 @@ def WakeVehicle(BASE_URL, VEHICLE_ID, TOKEN):
   # Variables
   HEADERS = {
     'Authorization': "Bearer " + TOKEN,
-    'Content-Type': 'application/json',
+    'Accept': 'application/json',
     'User-Agent': 'None'
   }
   URL = BASE_URL + VEHICLE_ID + "/wake_up"
@@ -197,7 +197,7 @@ def LockDoors(BASE_URL, VEHICLE_ID, TOKEN):
   # Variables
   HEADERS = {
     'Authorization': "Bearer " + TOKEN,
-    'Content-Type': 'application/json',
+    'Accept': 'application/json',
     'User-Agent': 'None'
   }
   URL = BASE_URL + VEHICLE_ID + "/command/door_lock"
@@ -218,7 +218,7 @@ def UnlockDoors(BASE_URL, VEHICLE_ID, TOKEN):
   # Variables
   HEADERS = {
     'Authorization': "Bearer " + TOKEN,
-    'Content-Type': 'application/json',
+    'Accept': 'application/json',
     'User-Agent': 'None'
   }
   URL = BASE_URL + VEHICLE_ID + "/command/door_unlock"
@@ -239,7 +239,7 @@ def HonkHorn(BASE_URL, VEHICLE_ID, TOKEN):
   # Variables
   HEADERS = {
     'Authorization': "Bearer " + TOKEN,
-    'Content-Type': 'application/json',
+    'Accept': 'application/json',
     'User-Agent': 'None'
   }
   URL = BASE_URL + VEHICLE_ID + "/command/honk_horn"
@@ -260,6 +260,7 @@ def FlashLights(BASE_URL, VEHICLE_ID, TOKEN):
   # Variables
   HEADERS = {
     'Authorization': "Bearer " + TOKEN,
+    'Accept': 'application/json',
     'User-Agent': 'None'
   }
   URL = BASE_URL + VEHICLE_ID + "/command/flash_lights"
@@ -280,6 +281,7 @@ def StartClimateControl(BASE_URL, VEHICLE_ID, TOKEN):
   # Variables
   HEADERS = {
     'Authorization': "Bearer " + TOKEN,
+    'Accept': 'application/json',
     'User-Agent': 'None'
   }
   URL = BASE_URL + VEHICLE_ID + "/command/auto_conditioning_start"
@@ -300,6 +302,7 @@ def StopClimateControl(BASE_URL, VEHICLE_ID, TOKEN):
   # Variables
   HEADERS = {
     'Authorization': "Bearer " + TOKEN,
+    'Accept': 'application/json',
     'User-Agent': 'None'
   }
   URL = BASE_URL + VEHICLE_ID + "/command/auto_conditioning_stop"
@@ -324,6 +327,7 @@ def SetTemps(BASE_URL, VEHICLE_ID, VEHICLE_TEMP, TOKEN):
   }
   HEADERS = {
     'Authorization': "Bearer " + TOKEN,
+    'Accept': 'application/json',
     'User-Agent': 'None'
   }
   URL = BASE_URL + VEHICLE_ID + "/command/set_temps"
@@ -348,6 +352,7 @@ def StartDefrost(BASE_URL, VEHICLE_ID, TOKEN):
   }
   HEADERS = {
     'Authorization': "Bearer " + TOKEN,
+    'Accept': 'application/json',
     'User-Agent': 'None'
   }
   URL = BASE_URL + VEHICLE_ID + "/command/set_preconditioning_max"
@@ -372,6 +377,7 @@ def StopDefrost(BASE_URL, VEHICLE_ID, TOKEN):
   }
   HEADERS = {
     'Authorization': "Bearer " + TOKEN,
+    'Accept': 'application/json',
     'User-Agent': 'None'
   }
   URL = BASE_URL + VEHICLE_ID + "/command/set_preconditioning_max"
@@ -396,6 +402,7 @@ def SetSeatHeater(BASE_URL, VEHICLE_ID, SEAT_HEATER_POSITION, SEAT_HEATER_LEVEL,
   }
   HEADERS = {
     'Authorization': "Bearer " + TOKEN,
+    'Accept': 'application/json',
     'User-Agent': 'None'
   }
   URL = BASE_URL + VEHICLE_ID + "/command/remote_seat_heater_request"
@@ -459,6 +466,7 @@ def StartSentry(BASE_URL, VEHICLE_ID, TOKEN):
   }
   HEADERS = {
     'Authorization': "Bearer " + TOKEN,
+    'Accept': 'application/json',
     'User-Agent': 'None'
   }
   URL = BASE_URL + VEHICLE_ID + "/command/set_sentry_mode"
@@ -483,6 +491,7 @@ def StopSentry(BASE_URL, VEHICLE_ID, TOKEN):
   }
   HEADERS = {
     'Authorization': "Bearer " + TOKEN,
+    'Accept': 'application/json',
     'User-Agent': 'None'
   }
   URL = BASE_URL + VEHICLE_ID + "/command/set_sentry_mode"
@@ -509,6 +518,7 @@ def OpenWindows(BASE_URL, VEHICLE_ID, TOKEN):
   }
   HEADERS = {
     'Authorization': "Bearer " + TOKEN,
+    'Accept': 'application/json',
     'User-Agent': 'None'
   }
   URL = BASE_URL + VEHICLE_ID + "/command/window_control"
@@ -535,6 +545,7 @@ def CloseWindows(BASE_URL, VEHICLE_ID, TOKEN):
   }
   HEADERS = {
     'Authorization': "Bearer " + TOKEN,
+    'Accept': 'application/json',
     'User-Agent': 'None'
   }
   URL = BASE_URL + VEHICLE_ID + "/command/window_control"
@@ -559,6 +570,7 @@ def ActuateFrunk(BASE_URL, VEHICLE_ID, TOKEN):
   }
   HEADERS = {
     'Authorization': "Bearer " + TOKEN,
+    'Accept': 'application/json',
     'User-Agent': 'None'
   }
   URL = BASE_URL + VEHICLE_ID + "/command/actuate_trunk"
@@ -583,6 +595,7 @@ def ActuateTrunk(BASE_URL, VEHICLE_ID, TOKEN):
   }
   HEADERS = {
     'Authorization': "Bearer " + TOKEN,
+    'Accept': 'application/json',
     'User-Agent': 'None'
   }
   URL = BASE_URL + VEHICLE_ID + "/command/actuate_trunk"
@@ -607,6 +620,7 @@ def SetChargeLimit(BASE_URL, VEHICLE_ID, VEHICLE_CHARGE_LIMIT, TOKEN):
   }
   HEADERS = {
     'Authorization': "Bearer " + TOKEN,
+    'Accept': 'application/json',
     'User-Agent': 'None'
   }
   URL = BASE_URL + VEHICLE_ID + "/command/set_charge_limit"
@@ -628,6 +642,7 @@ def StartCharging(BASE_URL, VEHICLE_ID, TOKEN):
   # Variables
   HEADERS = {
     'Authorization': "Bearer " + TOKEN,
+    'Accept': 'application/json',
     'User-Agent': 'None'
   }
   URL = BASE_URL + VEHICLE_ID + "/command/charge_start"
@@ -648,6 +663,7 @@ def StopCharging(BASE_URL, VEHICLE_ID, TOKEN):
   # Variables
   HEADERS = {
     'Authorization': "Bearer " + TOKEN,
+    'Accept': 'application/json',
     'User-Agent': 'None'
   }
   URL = BASE_URL + VEHICLE_ID + "/command/charge_stop"
@@ -668,7 +684,7 @@ def OpenChargePortDoor(BASE_URL, VEHICLE_ID, TOKEN):
   # Variables
   HEADERS = {
     'Authorization': "Bearer " + TOKEN,
-    'Content-Type': 'application/json',
+    'Accept': 'application/json',
     'User-Agent': 'None'
   }
   URL = BASE_URL + VEHICLE_ID + "/command/charge_port_door_open"
@@ -689,7 +705,7 @@ def CloseChargePortDoor(BASE_URL, VEHICLE_ID, TOKEN):
   # Variables
   HEADERS = {
     'Authorization': "Bearer " + TOKEN,
-    'Content-Type': 'application/json',
+    'Accept': 'application/json',
     'User-Agent': 'None'
   }
   URL = BASE_URL + VEHICLE_ID + "/command/charge_port_door_close"
@@ -713,6 +729,7 @@ def SetChargingAmps(BASE_URL, VEHICLE_ID, VEHICLE_CHARGING_AMPS, TOKEN):
   }
   HEADERS = {
     'Authorization': "Bearer " + TOKEN,
+    'Accept': 'application/json',
     'User-Agent': 'None'
   }
   URL = BASE_URL + VEHICLE_ID + "/command/set_charging_amps"
@@ -738,6 +755,7 @@ def EnableScheduledCharging(BASE_URL, VEHICLE_ID, SCHEDULED_CHARGING_TIME, TOKEN
   }
   HEADERS = {
     'Authorization': "Bearer " + TOKEN,
+    'Accept': 'application/json',
     'User-Agent': 'None'
   }
   URL = BASE_URL + VEHICLE_ID + "/command/set_scheduled_charging"
@@ -762,6 +780,7 @@ def DisableScheduledCharging(BASE_URL, VEHICLE_ID, TOKEN):
   }
   HEADERS = {
     'Authorization': "Bearer " + TOKEN,
+    'Accept': 'application/json',
     'User-Agent': 'None'
   }
   URL = BASE_URL + VEHICLE_ID + "/command/set_scheduled_charging"
@@ -786,6 +805,7 @@ def DisableScheduledCharging(BASE_URL, VEHICLE_ID, TOKEN):
   }
   HEADERS = {
     'Authorization': "Bearer " + TOKEN,
+    'Accept': 'application/json',
     'User-Agent': 'None'
   }
   URL = BASE_URL + VEHICLE_ID + "/command/set_scheduled_charging"
@@ -810,6 +830,7 @@ def StartRemoteDrive(BASE_URL, VEHICLE_ID, PASSWORD, TOKEN):
   }
   HEADERS = {
     'Authorization': "Bearer " + TOKEN,
+    'Accept': 'application/json',
     'User-Agent': 'None'
   }
   URL = BASE_URL + VEHICLE_ID + "/command/remote_start_drive"
@@ -834,6 +855,7 @@ def TriggerHomeLink(BASE_URL, VEHICLE_ID, TOKEN):
   VEHICLE_LONGITUDE = str(VEHICLE_DATA[1])
   HEADERS = {
     'Authorization': "Bearer " + TOKEN,
+    'Accept': 'application/json',
     'User-Agent': 'None'
   }
   DATA = {
