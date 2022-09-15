@@ -42,6 +42,7 @@ def RunCommand(BASE_URL, VEHICLE_ID, INPUT_CMD, PARAMETER_1, PARAMETER_2, TOKEN)
     StartCharging(BASE_URL, VEHICLE_ID, TOKEN)
   elif INPUT_CMD == "stop_charging":
     StopCharging(BASE_URL, VEHICLE_ID, TOKEN)
+    OpenChargePortDoor(BASE_URL, VEHICLE_ID, TOKEN)
   elif INPUT_CMD == "open_charge_port_door":
     OpenChargePortDoor(BASE_URL, VEHICLE_ID, TOKEN)
   elif INPUT_CMD == "close_charge_port_door":
@@ -325,6 +326,7 @@ def SetTemps(BASE_URL, VEHICLE_ID, VEHICLE_TEMP, TOKEN):
     'driver_temp': VEHICLE_TEMP,
     'passenger_temp': VEHICLE_TEMP
   }
+  ENCODED_DATA = json.dumps(DATA).encode('utf-8')
   HEADERS = {
     'Authorization': "Bearer " + TOKEN,
     'Accept': 'application/json',
@@ -336,7 +338,8 @@ def SetTemps(BASE_URL, VEHICLE_ID, VEHICLE_TEMP, TOKEN):
     'POST',
     URL,
     headers=HEADERS,
-    fields=DATA
+#    fields=DATA
+    body=ENCODED_DATA
   )
   HTTP_REQUEST_STATUS_CODE = HTTP_REQUEST.status
   if HTTP_REQUEST_STATUS_CODE == 200:
@@ -355,13 +358,15 @@ def StartDefrost(BASE_URL, VEHICLE_ID, TOKEN):
     'Accept': 'application/json',
     'User-Agent': 'None'
   }
+  ENCODED_DATA = json.dumps(DATA).encode('utf-8')
   URL = BASE_URL + VEHICLE_ID + "/command/set_preconditioning_max"
   HTTP = urllib3.PoolManager()
   HTTP_REQUEST = HTTP.request(
     'POST',
     URL,
     headers=HEADERS,
-    fields=DATA
+    body=ENCODED_DATA
+#    fields=DATA
   )
   HTTP_REQUEST_STATUS_CODE = HTTP_REQUEST.status
   if HTTP_REQUEST_STATUS_CODE == 200:
@@ -375,6 +380,7 @@ def StopDefrost(BASE_URL, VEHICLE_ID, TOKEN):
   DATA = {
     'on': 0
   }
+  ENCODED_DATA = json.dumps(DATA).encode('utf-8')
   HEADERS = {
     'Authorization': "Bearer " + TOKEN,
     'Accept': 'application/json',
@@ -386,7 +392,8 @@ def StopDefrost(BASE_URL, VEHICLE_ID, TOKEN):
     'POST',
     URL,
     headers=HEADERS,
-    fields=DATA
+    body=ENCODED_DATA
+#    fields=DATA
   )
   HTTP_REQUEST_STATUS_CODE = HTTP_REQUEST.status
   if HTTP_REQUEST_STATUS_CODE == 200:
@@ -400,6 +407,7 @@ def SetSeatHeater(BASE_URL, VEHICLE_ID, SEAT_HEATER_POSITION, SEAT_HEATER_LEVEL,
     'heater': SEAT_HEATER_POSITION,
     'level': SEAT_HEATER_LEVEL
   }
+  ENCODED_DATA = json.dumps(DATA).encode('utf-8')
   HEADERS = {
     'Authorization': "Bearer " + TOKEN,
     'Accept': 'application/json',
@@ -411,7 +419,8 @@ def SetSeatHeater(BASE_URL, VEHICLE_ID, SEAT_HEATER_POSITION, SEAT_HEATER_LEVEL,
     'POST',
     URL,
     headers=HEADERS,
-    fields=DATA
+    body=ENCODED_DATA
+#    fields=DATA
   )
   HTTP_REQUEST_STATUS_CODE = HTTP_REQUEST.status
   
@@ -464,6 +473,7 @@ def StartSentry(BASE_URL, VEHICLE_ID, TOKEN):
   DATA = {
     'on': 1
   }
+  ENCODED_DATA = json.dumps(DATA).encode('utf-8')
   HEADERS = {
     'Authorization': "Bearer " + TOKEN,
     'Accept': 'application/json',
@@ -475,7 +485,8 @@ def StartSentry(BASE_URL, VEHICLE_ID, TOKEN):
     'POST',
     URL,
     headers=HEADERS,
-    fields=DATA
+    body=ENCODED_DATA
+#   fields=DATA
   )
   HTTP_REQUEST_STATUS_CODE = HTTP_REQUEST.status
   if HTTP_REQUEST_STATUS_CODE == 200:
@@ -489,6 +500,7 @@ def StopSentry(BASE_URL, VEHICLE_ID, TOKEN):
   DATA = {
     'on': 0
   }
+  ENCODED_DATA = json.dumps(DATA).encode('utf-8')
   HEADERS = {
     'Authorization': "Bearer " + TOKEN,
     'Accept': 'application/json',
@@ -500,7 +512,8 @@ def StopSentry(BASE_URL, VEHICLE_ID, TOKEN):
     'POST',
     URL,
     headers=HEADERS,
-    fields=DATA
+    body=ENCODED_DATA
+#    fields=DATA
   )
   HTTP_REQUEST_STATUS_CODE = HTTP_REQUEST.status
   if HTTP_REQUEST_STATUS_CODE == 200:
@@ -516,6 +529,7 @@ def OpenWindows(BASE_URL, VEHICLE_ID, TOKEN):
     'lat': 0,
     'lon': 0
   }
+  ENCODED_DATA = json.dumps(DATA).encode('utf-8')
   HEADERS = {
     'Authorization': "Bearer " + TOKEN,
     'Accept': 'application/json',
@@ -527,7 +541,8 @@ def OpenWindows(BASE_URL, VEHICLE_ID, TOKEN):
     'POST',
     URL,
     headers=HEADERS,
-    fields=DATA
+    body=ENCODED_DATA
+#    fields=DATA
   )
   HTTP_REQUEST_STATUS_CODE = HTTP_REQUEST.status
   if HTTP_REQUEST_STATUS_CODE == 200:
@@ -543,6 +558,7 @@ def CloseWindows(BASE_URL, VEHICLE_ID, TOKEN):
     'lat': 0,
     'lon': 0
   }
+  ENCODED_DATA = json.dumps(DATA).encode('utf-8')
   HEADERS = {
     'Authorization': "Bearer " + TOKEN,
     'Accept': 'application/json',
@@ -554,7 +570,8 @@ def CloseWindows(BASE_URL, VEHICLE_ID, TOKEN):
     'POST',
     URL,
     headers=HEADERS,
-    fields=DATA
+    body=ENCODED_DATA
+#    fields=DATA
   )
   HTTP_REQUEST_STATUS_CODE = HTTP_REQUEST.status
   if HTTP_REQUEST_STATUS_CODE == 200:
@@ -568,6 +585,7 @@ def ActuateFrunk(BASE_URL, VEHICLE_ID, TOKEN):
   DATA = {
     'which_trunk': 'front'
   }
+  ENCODED_DATA = json.dumps(DATA).encode('utf-8')
   HEADERS = {
     'Authorization': "Bearer " + TOKEN,
     'Accept': 'application/json',
@@ -579,7 +597,8 @@ def ActuateFrunk(BASE_URL, VEHICLE_ID, TOKEN):
     'POST',
     URL,
     headers=HEADERS,
-    fields=DATA
+    body=ENCODED_DATA
+#    fields=DATA
   )
   HTTP_REQUEST_STATUS_CODE = HTTP_REQUEST.status
   if HTTP_REQUEST_STATUS_CODE == 200:
@@ -593,6 +612,7 @@ def ActuateTrunk(BASE_URL, VEHICLE_ID, TOKEN):
   DATA = {
     'which_trunk': "rear"
   }
+  ENCODED_DATA = json.dumps(DATA).encode('utf-8')
   HEADERS = {
     'Authorization': "Bearer " + TOKEN,
     'Accept': 'application/json',
@@ -604,7 +624,8 @@ def ActuateTrunk(BASE_URL, VEHICLE_ID, TOKEN):
     'POST',
     URL,
     headers=HEADERS,
-    fields=DATA
+    body=ENCODED_DATA
+#    fields=DATA
   )
   HTTP_REQUEST_STATUS_CODE = HTTP_REQUEST.status
   if HTTP_REQUEST_STATUS_CODE == 200:
@@ -618,6 +639,7 @@ def SetChargeLimit(BASE_URL, VEHICLE_ID, VEHICLE_CHARGE_LIMIT, TOKEN):
   DATA = {
     'percent': VEHICLE_CHARGE_LIMIT
   }
+  ENCODED_DATA = json.dumps(DATA).encode('utf-8')
   HEADERS = {
     'Authorization': "Bearer " + TOKEN,
     'Accept': 'application/json',
@@ -629,7 +651,8 @@ def SetChargeLimit(BASE_URL, VEHICLE_ID, VEHICLE_CHARGE_LIMIT, TOKEN):
     'POST',
     URL,
     headers=HEADERS,
-    fields=DATA
+    body=ENCODED_DATA
+#    fields=DATA
   )
   HTTP_REQUEST_STATUS_CODE = HTTP_REQUEST.status
   if HTTP_REQUEST_STATUS_CODE == 200:
@@ -727,6 +750,7 @@ def SetChargingAmps(BASE_URL, VEHICLE_ID, VEHICLE_CHARGING_AMPS, TOKEN):
   DATA = {
     'charging_amps': VEHICLE_CHARGING_AMPS
   }
+  ENCODED_DATA = json.dumps(DATA).encode('utf-8')
   HEADERS = {
     'Authorization': "Bearer " + TOKEN,
     'Accept': 'application/json',
@@ -738,7 +762,8 @@ def SetChargingAmps(BASE_URL, VEHICLE_ID, VEHICLE_CHARGING_AMPS, TOKEN):
     'POST',
     URL,
     headers=HEADERS,
-    fields=DATA
+    body=ENCODED_DATA
+#    fields=DATA
   )
   HTTP_REQUEST_STATUS_CODE = HTTP_REQUEST.status
   if HTTP_REQUEST_STATUS_CODE == 200:
@@ -753,6 +778,7 @@ def EnableScheduledCharging(BASE_URL, VEHICLE_ID, SCHEDULED_CHARGING_TIME, TOKEN
     'enable': 1,
     'time': SCHEDULED_CHARGING_TIME
   }
+  ENCODED_DATA = json.dumps(DATA).encode('utf-8')
   HEADERS = {
     'Authorization': "Bearer " + TOKEN,
     'Accept': 'application/json',
@@ -764,7 +790,8 @@ def EnableScheduledCharging(BASE_URL, VEHICLE_ID, SCHEDULED_CHARGING_TIME, TOKEN
     'POST',
     URL,
     headers=HEADERS,
-    fields=DATA
+    body=ENCODED_DATA
+#    fields=DATA
   )
   HTTP_REQUEST_STATUS_CODE = HTTP_REQUEST.status
   if HTTP_REQUEST_STATUS_CODE == 200:
@@ -778,6 +805,7 @@ def DisableScheduledCharging(BASE_URL, VEHICLE_ID, TOKEN):
   DATA = {
     'enable': 0
   }
+  ENCODED_DATA = json.dumps(DATA).encode('utf-8')
   HEADERS = {
     'Authorization': "Bearer " + TOKEN,
     'Accept': 'application/json',
@@ -789,7 +817,8 @@ def DisableScheduledCharging(BASE_URL, VEHICLE_ID, TOKEN):
     'POST',
     URL,
     headers=HEADERS,
-    fields=DATA
+    body=ENCODED_DATA
+#    fields=DATA
   )
   HTTP_REQUEST_STATUS_CODE = HTTP_REQUEST.status
   if HTTP_REQUEST_STATUS_CODE == 200:
@@ -803,6 +832,7 @@ def DisableScheduledCharging(BASE_URL, VEHICLE_ID, TOKEN):
   DATA = {
     'enable': 'false'
   }
+  ENCODED_DATA = json.dumps(DATA).encode('utf-8')
   HEADERS = {
     'Authorization': "Bearer " + TOKEN,
     'Accept': 'application/json',
@@ -814,7 +844,8 @@ def DisableScheduledCharging(BASE_URL, VEHICLE_ID, TOKEN):
     'POST',
     URL,
     headers=HEADERS,
-    fields=DATA
+    body=ENCODED_DATA
+#    fields=DATA
   )
   HTTP_REQUEST_STATUS_CODE = HTTP_REQUEST.status
   if HTTP_REQUEST_STATUS_CODE == 200:
@@ -828,6 +859,7 @@ def StartRemoteDrive(BASE_URL, VEHICLE_ID, PASSWORD, TOKEN):
   DATA = {
     'password': str(PASSWORD)
   }
+  ENCODED_DATA = json.dumps(DATA).encode('utf-8')
   HEADERS = {
     'Authorization': "Bearer " + TOKEN,
     'Accept': 'application/json',
@@ -839,7 +871,8 @@ def StartRemoteDrive(BASE_URL, VEHICLE_ID, PASSWORD, TOKEN):
     'POST',
     URL,
     headers=HEADERS,
-    fields=DATA
+    body=ENCODED_DATA
+#    fields=DATA
   )
   HTTP_REQUEST_STATUS_CODE = HTTP_REQUEST.status
   if HTTP_REQUEST_STATUS_CODE == 200:
@@ -862,13 +895,15 @@ def TriggerHomeLink(BASE_URL, VEHICLE_ID, TOKEN):
     'lat': VEHICLE_LATITUDE,
     'lon': VEHICLE_LONGITUDE
   }
+  ENCODED_DATA = json.dumps(DATA).encode('utf-8')
   URL = BASE_URL + VEHICLE_ID + "/command/trigger_homelink"
   HTTP = urllib3.PoolManager()
   HTTP_REQUEST = HTTP.request(
     'POST',
     URL,
     headers=HEADERS,
-    fields=DATA
+    body=ENCODED_DATA
+#    fields=DATA
   )
   HTTP_REQUEST_STATUS_CODE = HTTP_REQUEST.status
   if HTTP_REQUEST_STATUS_CODE == 200:
